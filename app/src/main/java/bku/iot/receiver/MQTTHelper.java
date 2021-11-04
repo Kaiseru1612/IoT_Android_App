@@ -28,7 +28,7 @@ public class MQTTHelper {
 
 
     final String username = "VinhTien1612";
-    final String password = "aio_lJMZ44U2ZLCEbvnIq6PEO3KeFtOr";
+    final String password = "aio_WcKg52Pn9yej14Li58busgnXlhYW";
 
     public MqttAndroidClient mqttAndroidClient;
 
@@ -109,7 +109,8 @@ public class MQTTHelper {
                     "VinhTien1612/feeds/error-control",
                     "VinhTien1612/feeds/moist-channel",
                     "VinhTien1612/feeds/wind-speed-channel",
-                    "VinhTien1612/feeds/light-level-channel"};
+                    "VinhTien1612/feeds/light-level-channel"
+            };
             for(int i = 0; i < topics.length; i++) {
                 mqttAndroidClient.subscribe(topics[i], 0, null, new IMqttActionListener() {
                     @Override

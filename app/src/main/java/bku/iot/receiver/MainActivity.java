@@ -2,6 +2,7 @@ package bku.iot.receiver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -45,8 +47,18 @@ import pl.pawelkleczkowski.customgauge.CustomGauge;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private LineChart mChart;
-    ArrayList<Entry> yValue = new ArrayList<>();
+    LineChart mChart;
+    ArrayList<Entry> tempValue = new ArrayList<Entry>();
+    ArrayList<Entry> CO2Value = new ArrayList<Entry>();
+    ArrayList<Entry> lightValue = new ArrayList<>();
+
+    LineDataSet tempDataSet = null;
+    LineDataSet CO2DataSet = null;
+    LineDataSet LightDataSet = null;
+
+    int tmpchartIndex=0;
+    int CO2chartIndex=0;
+    int lightIndex = 0;
 
 
     MQTTHelper mqttHelper;
@@ -87,37 +99,8 @@ public class MainActivity extends AppCompatActivity {
         txtLight = findViewById(R.id.txtLightlevel);
         gaugeHumid.setValue(69);
 
+
         mChart = findViewById(R.id.lineChart);
-
-//        mChart.setOnChartGestureListener(MainActivity.this);
-//        mChart.setOnChartValueSelectedListener(MainActivity.this);
-
-        mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(false);
-
-
-        yValue.add(new Entry(0, 00));
-        yValue.add(new Entry(1, 00));
-        yValue.add(new Entry(2, 00));
-        yValue.add(new Entry(3, 00));
-        yValue.add(new Entry(4, 00));
-        yValue.add(new Entry(5, 00));
-        yValue.add(new Entry(6, 00));
-        yValue.add(new Entry(7, 00));
-        yValue.add(new Entry(8, 00));
-        yValue.add(new Entry(9, 00));
-
-        LineDataSet set1 = new LineDataSet(yValue, "Data set 1");
-
-
-        set1.setFillAlpha(110);
-
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
-
-        LineData data = new LineData(dataSets);
-
-        mChart.setData(data);
 
         toggleButtonLed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -159,9 +142,15 @@ public class MainActivity extends AppCompatActivity {
 
         setupScheduler();
         startMQTT();
-    }
+        mChart.setNoDataText("No data");
+        mChart.setDrawBorders(true);
 
-    private void runChart(){
+        Description description = new Description();
+        description.setText("Data");
+        mChart.setDescription(description);
+        mChart.setBackgroundColor(Color.WHITE);
+        mChart.setVisibleXRangeMaximum(10);
+        mChart.setDragEnabled(true);
 
     }
 
@@ -188,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     if (sentCounter < 3){
                         sendDataMQTT(list.get(0).topic, list.get(0).message);
                         list.remove(0);
-                        sentCounter++;
+//                        sentCounter++;
                     }
                     else {
                         sentCounter=0;
@@ -210,17 +199,17 @@ public class MainActivity extends AppCompatActivity {
         aTimer.schedule(scheduler, 5000,1000); /// delay:executed afer 5 sec, and the after 1
     }
 
-    List<MQTTMessage> displayer = new ArrayList<>();
 
     private void sendDataMQTT(String topic, String value){
         waitingPeriod = 3;
+        sentCounter++;
         sendMessageAgain = false;
         MQTTMessage buffer = new MQTTMessage();
         buffer.topic = topic; buffer.message = value;
         list.add(buffer);
 
         MqttMessage msg = new MqttMessage();
-        msg.setId(1952493);
+        msg.setId(16122001);
         msg.setQos(0); // qua ..... of service 0-4 cang cao cang tin cay
         msg.setRetained(true); // 1 packet with true retain - forward packet
 
@@ -239,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         return Integer.toString(result);
     }
     private void startMQTT(){
-        mqttHelper = new MQTTHelper(getApplicationContext(), randomID());
+        mqttHelper = new MQTTHelper(getApplicationContext(), "16122222222");
 
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
@@ -253,16 +242,37 @@ public class MainActivity extends AppCompatActivity {
 
             }
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            boolean sendmess=false;
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
 
-                Log.d("mqtt", "Receive " + message.toString());
+                Log.d("mqtt", "Receive " + message.toString() +" from" + topic);
                 if(topic.equals("VinhTien1612/feeds/temp-channel")){
                     txtTemp.setText(message.toString()+"°C");
+                    tempValue.add(new Entry(tmpchartIndex++, Integer.parseInt(message.toString())));
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    tempDataSet = new LineDataSet(tempValue,"Temperature");
+                    tempDataSet.setLineWidth(5);
+                    tempDataSet.setColor(Color.RED);
+                    if (tempDataSet != null) dataSets.add(tempDataSet);
+                    if (CO2DataSet != null) dataSets.add(CO2DataSet);
+                    if (LightDataSet != null) dataSets.add(LightDataSet);
+                    LineData data = new LineData(dataSets);
+                    mChart.setData(data);
+                    mChart.invalidate();
                 }
                 if (topic.equals("VinhTien1612/feeds/co2-channel")){
                     txtco2.setText(message.toString() + " ppm");
+                    CO2Value.add(new Entry(CO2chartIndex++, Integer.parseInt(message.toString())));
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    CO2DataSet = new LineDataSet(CO2Value,"CO2");
+                    CO2DataSet.setLineWidth(5);
+                    CO2DataSet.setColor(Color.BLUE);
+                    if (tempDataSet != null) dataSets.add(tempDataSet);
+                    if (CO2DataSet != null) dataSets.add(CO2DataSet);
+                    if (LightDataSet != null) dataSets.add(LightDataSet);
+                    LineData data = new LineData(dataSets);
+                    mChart.setData(data);
+                    mChart.invalidate();
                 }
                 if(topic.equals("VinhTien1612/feeds/humid-channel")){
                     txtHummi.setText(message.toString()+"%");
@@ -286,8 +296,19 @@ public class MainActivity extends AppCompatActivity {
                     txtError.setText(printerrorMessage);
                 }
                 if (topic.equals("VinhTien1612/feeds/light-level-channel")){
-
                     txtLight.setText(message.toString() + " lux");
+                    lightValue.add(new Entry(lightIndex++, Integer.parseInt(message.toString())));
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    LightDataSet = new LineDataSet(lightValue,"Light");
+                    LightDataSet.setLineWidth(5);
+                    LightDataSet.setColor(Color.YELLOW);
+                    if (tempDataSet != null) dataSets.add(tempDataSet);
+                    if (CO2DataSet != null) dataSets.add(CO2DataSet);
+                    if (LightDataSet != null) dataSets.add(LightDataSet);
+                    LineData data = new LineData(dataSets);
+                    mChart.setData(data);
+                    mChart.invalidate();
+
                 }
                 if (topic.equals("VinhTien1612/feeds/wind-speed-channel")){
                     txtWind.setText(message.toString() + " m/s");
@@ -341,22 +362,6 @@ public class MainActivity extends AppCompatActivity {
         public MQTTMessage(String topic, String message){
             this.message = message;
             this.topic = topic;
-        }
-
-        public String getTopic() {
-            return topic;
-        }
-
-        public void setTopic(String topic) {
-            this.topic = topic;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
         }
     }
 }
