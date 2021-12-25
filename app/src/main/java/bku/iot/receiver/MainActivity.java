@@ -42,7 +42,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-import pl.pawelkleczkowski.customgauge.CustomGauge;
+//import pl.pawelkleczkowski.customgauge.CustomGauge;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton toggleButtonLed;
     ToggleButton toggleButtonPump;
     ProgressBar progressBar;
-    CustomGauge gaugeHumid;
+//    CustomGauge gaugeHumid;
     TextView txtWind, txtMoist, txtLight;
     int sentCounter=0;
     int printerrorMessageCounter = 0;
@@ -87,58 +87,58 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtTemp = findViewById(R.id.txtTemperature);
-        txtco2 = findViewById(R.id.txtco2);
-        toggleButtonLed = findViewById(R.id.ledButton);
-        toggleButtonPump = findViewById(R.id.pumpButton);
+//        txtco2 = findViewById(R.id.txtco2);
+//        toggleButtonLed = findViewById(R.id.ledButton);
+//        toggleButtonPump = findViewById(R.id.pumpButton);
         progressBar = findViewById(R.id.pBar);
         txtError = findViewById(R.id.errorText);
-        gaugeHumid = findViewById(R.id.humidgauge);
-        txtHummi = findViewById(R.id.txthumidgaugeLabel);
-        txtMoist = findViewById(R.id.txtSoilmoist);
-        txtWind = findViewById(R.id.txtWindspeed);
-        txtLight = findViewById(R.id.txtLightlevel);
-        gaugeHumid.setValue(69);
+//        gaugeHumid = findViewById(R.id.humidgauge);
+//        txtHummi = findViewById(R.id.txthumidgaugeLabel);
+//        txtMoist = findViewById(R.id.txtSoilmoist);
+//        txtWind = findViewById(R.id.txtWindspeed);
+//        txtLight = findViewById(R.id.txtLightlevel);
+//        gaugeHumid.setValue(69);
 
 
         mChart = findViewById(R.id.lineChart);
 
-        toggleButtonLed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isCheckedLed) {
-                toggleButtonLed.setVisibility(View.INVISIBLE);
-                if (isCheckedLed){
-                    Log.d("mqtt", "Button On");
-                    sendDataMQTT("VinhTien1612/feeds/led-channel", "1");
-                    topicSent = "LED";
-                    progressBar.setIndeterminate(true);
-                }
-                else {
-                    Log.d("mqtt", "Button Off");
-                    sendDataMQTT("VinhTien1612/feeds/led-channel", "0");
-                    topicSent = "LED";
-                    progressBar.setIndeterminate(true);
-                }
-            }
-        });
+//        toggleButtonLed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isCheckedLed) {
+//                toggleButtonLed.setVisibility(View.INVISIBLE);
+//                if (isCheckedLed){
+//                    Log.d("mqtt", "Button On");
+//                    sendDataMQTT("VinhTien1612/feeds/led-channel", "1");
+//                    topicSent = "LED";
+//                    progressBar.setIndeterminate(true);
+//                }
+//                else {
+//                    Log.d("mqtt", "Button Off");
+//                    sendDataMQTT("VinhTien1612/feeds/led-channel", "0");
+//                    topicSent = "LED";
+//                    progressBar.setIndeterminate(true);
+//                }
+//            }
+//        });
 
-        toggleButtonPump.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isCheckedPump) {
-                toggleButtonPump.setVisibility(View.INVISIBLE);
-                if (isCheckedPump){
-                    Log.d("mqtt", "Button On");
-                    sendDataMQTT("VinhTien1612/feeds/pump-channel", "2");
-                    topicSent = "PUMP";
-                    progressBar.setIndeterminate(true);
-                }
-                else {
-                    Log.d("mqtt", "Button Off");
-                    sendDataMQTT("VinhTien1612/feeds/pump-channel", "3");
-                    topicSent = "PUMP";
-                    progressBar.setIndeterminate(true);
-                }
-            }
-        });
+//        toggleButtonPump.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isCheckedPump) {
+//                toggleButtonPump.setVisibility(View.INVISIBLE);
+//                if (isCheckedPump){
+//                    Log.d("mqtt", "Button On");
+//                    sendDataMQTT("VinhTien1612/feeds/pump-channel", "2");
+//                    topicSent = "PUMP";
+//                    progressBar.setIndeterminate(true);
+//                }
+//                else {
+//                    Log.d("mqtt", "Button Off");
+//                    sendDataMQTT("VinhTien1612/feeds/pump-channel", "3");
+//                    topicSent = "PUMP";
+//                    progressBar.setIndeterminate(true);
+//                }
+//            }
+//        });
 
         setupScheduler();
         startMQTT();
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(topic.equals("VinhTien1612/feeds/humid-channel")){
                     txtHummi.setText(message.toString()+"%");
-                    gaugeHumid.setValue(Integer.parseInt(message.toString()));
+//                    gaugeHumid.setValue(Integer.parseInt(message.toString()));
                 }
                 if(topic.equals("VinhTien1612/feeds/error-control")){
                     txtError.setText("Updating");
@@ -310,28 +310,28 @@ public class MainActivity extends AppCompatActivity {
                     mChart.invalidate();
 
                 }
-                if (topic.equals("VinhTien1612/feeds/wind-speed-channel")){
-                    txtWind.setText(message.toString() + " m/s");
-                }
-                if (topic.equals("VinhTien1612/feeds/moist-channel")){
-                    txtMoist.setText(message.toString() + " %");
-                }
-                if (topic.equals("VinhTien1612/feeds/led-channel")){
-                        if (message.toString().equals("1")){
-                            toggleButtonLed.setChecked(true);
-                        }
-                        else  if (message.toString().equals("0")){
-                            toggleButtonLed.setChecked(false);
-                        }
-                }
-                if (topic.equals("VinhTien1612/feeds/pump-channel")){
-                    if (message.toString().equals("2")){
-                        toggleButtonPump.setChecked(true);
-                    }
-                    else  if (message.toString().equals("3")){
-                        toggleButtonPump.setChecked(false);
-                    }
-                }
+//                if (topic.equals("VinhTien1612/feeds/wind-speed-channel")){
+//                    txtWind.setText(message.toString() + " m/s");
+//                }
+//                if (topic.equals("VinhTien1612/feeds/moist-channel")){
+//                    txtMoist.setText(message.toString() + " %");
+//                }
+//                if (topic.equals("VinhTien1612/feeds/led-channel")){
+//                        if (message.toString().equals("1")){
+//                            toggleButtonLed.setChecked(true);
+//                        }
+//                        else  if (message.toString().equals("0")){
+//                            toggleButtonLed.setChecked(false);
+//                        }
+//                }
+//                if (topic.equals("VinhTien1612/feeds/pump-channel")){
+//                    if (message.toString().equals("2")){
+//                        toggleButtonPump.setChecked(true);
+//                    }
+//                    else  if (message.toString().equals("3")){
+//                        toggleButtonPump.setChecked(false);
+//                    }
+//                }
 
                 if ((topic.equals("VinhTien1612/feeds/error-control") && ((message.toString().contains("LED")) || (message.toString().contains("PUMP")))) ){ //TODO: improve later
                     sendMessageAgain=false;

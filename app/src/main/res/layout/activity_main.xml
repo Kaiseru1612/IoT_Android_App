@@ -15,23 +15,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="5%"
-        app:layout_marginTopPercent="10%"
+        app:layout_widthPercent="48%"
+        app:layout_heightPercent="7%"
+        app:layout_marginStartPercent="51%"
+        app:layout_marginTopPercent="5%"
 
         android:background="@color/orange"
         />
     <TextView
         android:id="@+id/txtTemperature"
-        android:text="35°C"
-
+        android:text="Updating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="10%"
-        app:layout_marginStartPercent="5%"
-        app:layout_marginTopPercent="15%"
+
+        app:layout_widthPercent="48%"
+        app:layout_heightPercent="8%"
+        app:layout_marginStartPercent="51%"
+        app:layout_marginTopPercent="12%"
+
+        android:background="@color/orange"
 
         android:textStyle="bold"
         android:gravity="center"
@@ -39,51 +41,29 @@
         android:textColor="@color/white"
 
         />
-    <ImageView
-        android:src="@drawable/co2_logo"
-        android:scaleType="fitCenter"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="30%"
-        app:layout_marginTopPercent="10%"
-
-        android:background="@color/gray"
-        />
     <TextView
-        android:id="@+id/txtco2"
-        android:text="70 ppm"
-
+        android:id="@+id/txtTemperature_status"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="10%"
-        app:layout_marginStartPercent="30%"
-        app:layout_marginTopPercent="15%"
+        android:background="@color/noinfo"
+
+        android:gravity="center"
+        android:text="No Info"
+
+        android:textColor="@color/black"
+        android:textSize="30dp"
 
         android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="23dp"
-        android:textColor="#ffffff"
+
+        app:layout_heightPercent="15%"
+        app:layout_marginStartPercent="1%"
+        app:layout_marginTopPercent="5%"
+        app:layout_widthPercent="48%"
+
         />
 
-    <ToggleButton
-        android:id="@+id/ledButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/toggle_selector"
-        android:checked="false"
-        android:text=""
-        android:textOff=""
-        android:textOn=""
-
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="9%"
-        app:layout_heightPercent="13%"/>
-    
     <ImageView
         android:id="@+id/bklogo"
         android:src="@drawable/bk_logo"
@@ -107,169 +87,61 @@
         app:layout_marginStartPercent="15%"
         app:layout_marginTopPercent="90%"
 
-        android:text="ANDROID IOT DASHBOARD"
-        android:textSize="25dp"
+        android:text="EC/PPM/TDS IOT"
+        android:textSize="20dp"
         android:textColor="#ffffff"
         android:textStyle="bold"
         android:gravity="center"
         />
-    <ImageView
-        android:src="@drawable/icon_home"
-        android:scaleType="fitCenter"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_widthPercent="15%"
-        app:layout_heightPercent="9%"
-        app:layout_marginStartPercent="0%"
-        app:layout_marginTopPercent="0%"
-        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ho Chi Minh City"
+        android:text="Last update"
 
-        app:layout_widthPercent="85%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="15%"
-        app:layout_marginTopPercent="0%"
+        app:layout_widthPercent="98%"
+        app:layout_heightPercent="4%"
+        app:layout_marginStartPercent="2%"
+        app:layout_marginTopPercent="1%"
 
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:textColor="#ffffff"
         android:textStyle="bold"
-        android:gravity="center"/>
-    <ToggleButton
-        android:id="@+id/pumpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/toggle_selector"
-        android:checked="false"
-        android:text=""
-        android:textOff=""
-        android:textOn=""
+        android:gravity="left"/>
 
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="26%"
-        app:layout_heightPercent="13%"/>
-    <TextView
-        android:id="@+id/pumpText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pump"
-
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="3%"
-        app:layout_marginStartPercent="64%"
-        app:layout_marginTopPercent="23%"
-
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:gravity="center"/>
-    <TextView
-        android:id="@+id/ledText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Led"
-
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="3%"
-        app:layout_marginStartPercent="64%"
-        app:layout_marginTopPercent="6%"
-
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:gravity="center"/>
     <TextView
         android:id="@+id/errorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Updating..."
-
-        app:layout_widthPercent="45%"
-        app:layout_heightPercent="12%"
-        app:layout_marginStartPercent="5%"
-        app:layout_marginTopPercent="25%"
-
-        android:textSize="15dp"
-        android:textColor="#000000"
         android:background="@color/white"
+
+        android:gravity="left"
+        android:text="Updating..."
+        android:textColor="#000000"
+        android:textSize="15dp"
+
         android:textStyle="bold"
-        android:gravity="left"/>
+        app:layout_heightPercent="12%"
+        app:layout_marginStartPercent="1%"
+        app:layout_marginTopPercent="55%"
+        app:layout_widthPercent="98%"
+        />
+
     <ProgressBar
         android:id="@+id/pBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:textStyle="bold"
+        app:layout_heightPercent="2%"
         app:layout_marginStartPercent="5%"
-        app:layout_marginTopPercent="35%"
-        app:layout_widthPercent="45%"
-        app:layout_heightPercent="3%"
+        app:layout_marginTopPercent="65%"
+        app:layout_widthPercent="90%"
         android:max="100"
 
         android:indeterminate="false"
         android:progress="1" />
-
-    <pl.pawelkleczkowski.customgauge.CustomGauge
-        android:id="@+id/humidgauge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="false"
-
-
-        app:gaugePointStartColor="#00ffff"
-        app:gaugePointEndColor="#ff0000"
-        app:gaugePointSize="6"
-        app:gaugeStartAngle="135"
-        app:gaugeStrokeCap="ROUND"
-        app:gaugeStrokeColor="#ffff00"
-        app:gaugeStrokeWidth="10dp"
-        app:gaugeStartValue="0"
-        app:gaugeEndValue="100"
-        app:gaugeSweepAngle="270"
-        app:gaugeDividerColor="#000000"
-        app:gaugeDividerStep="@integer/material_motion_duration_long_1"
-        app:gaugeDividerDrawFirst="true"
-        android:background="#003399"
-
-        app:layout_marginStartPercent="5%"
-        app:layout_marginTopPercent="40%"
-        app:layout_widthPercent="45%"
-        app:layout_heightPercent="30%"
-        />
-
-    <TextView
-        android:id="@+id/humidgaugeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Air Humidity"
-
-        app:layout_widthPercent="30%"
-        app:layout_heightPercent="4%"
-        app:layout_marginStartPercent="12%"
-        app:layout_marginTopPercent="65%"
-
-        android:textColor="#ffffff"
-        android:textSize="19dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        />
-    <TextView
-        android:id="@+id/txthumidgaugeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="69%"
-
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="18%"
-        app:layout_marginTopPercent="57%"
-        android:textColor="#ffffff"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        />
 
     <ImageView
         android:src="@drawable/water_drop_logo"
@@ -278,42 +150,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="9%"
-        app:layout_marginStartPercent="18%"
-        app:layout_marginTopPercent="47%"
-        />
-
-    <ImageView
-        android:src="@drawable/wind_speed_logo"
-        android:scaleType="fitCenter"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_widthPercent="38%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="40%"
+        app:layout_widthPercent="48%"
+        app:layout_heightPercent="8%"
+        app:layout_marginStartPercent="51%"
+        app:layout_marginTopPercent="38%"
 
         android:background="@color/green"
         />
     <TextView
-        android:id="@+id/txtWindspeed"
-        android:text="28 m/s"
+        android:id="@+id/txtTds"
+        android:text="Updating"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        app:layout_widthPercent="38%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="45%"
+        app:layout_widthPercent="48%"
+        app:layout_heightPercent="8%"
+        app:layout_marginStartPercent="51%"
+        app:layout_marginTopPercent="46%"
 
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="25dp"
         android:textColor="@color/white"
+        android:background="@color/green"
+
+        />
+    <TextView
+        android:id="@+id/txtTDS_status"
+        android:text="No Info"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_widthPercent="48%"
+        app:layout_heightPercent="16%"
+
+        app:layout_marginStartPercent="1%"
+        app:layout_marginTopPercent="38%"
+
+        android:background="@color/noinfo"
+
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
 
         />
 
@@ -325,59 +206,52 @@
         android:scaleType="fitCenter"
 
         android:src="@drawable/soil_loist_logo"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="60%"
 
-        app:layout_widthPercent="38%" />
-
-    <TextView
-        android:id="@+id/txtLightlevel"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:gravity="center"
-
-        android:text="28 lux"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:textStyle="bold"
-
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="55%"
-        app:layout_widthPercent="38%" />
-    <ImageView
-        android:src="@drawable/sunny_logo"
-        android:scaleType="fitCenter"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_widthPercent="38%"
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="50%"
-
-        android:background="@color/yellow"
-        />
+        app:layout_heightPercent="8%"
+        app:layout_marginStartPercent="51%"
+        app:layout_marginTopPercent="21%"
+        app:layout_widthPercent="48%" />
 
     <TextView
-        android:id="@+id/txtSoilmoist"
+        android:id="@+id/txtEc"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:background="@color/brown"
 
-        android:text="20 %"
+        android:gravity="center"
+        android:text="Updating"
         android:textColor="@color/white"
         android:textSize="28dp"
-        android:textStyle="bold"
 
-        app:layout_heightPercent="5%"
-        app:layout_marginStartPercent="55%"
-        app:layout_marginTopPercent="65%"
-        app:layout_widthPercent="38%" />
+        android:textStyle="bold"
+        app:layout_heightPercent="8%"
+        app:layout_marginStartPercent="51%"
+        app:layout_marginTopPercent="29%"
+
+        app:layout_widthPercent="48%" />
+
+    <TextView
+        android:id="@+id/txtEC_status"
+        android:text="No Info"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_widthPercent="48%"
+        app:layout_heightPercent="16%"
+
+        app:layout_marginStartPercent="1%"
+        app:layout_marginTopPercent="21%"
+
+        android:background="@color/noinfo"
+
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+
+        />
 <!--    <ImageView-->
 <!--        android:src="@drawable/iotimage"-->
 <!--        android:scaleType="fitXY"-->
@@ -395,9 +269,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        app:layout_widthPercent="90%"
-        app:layout_heightPercent="18%"
-        app:layout_marginStartPercent="5%"
-        app:layout_marginTopPercent="72%"
+        app:layout_widthPercent="98%"
+        app:layout_heightPercent="20%"
+
+        app:layout_marginStartPercent="1%"
+        app:layout_marginTopPercent="68%"
         />
 </androidx.percentlayout.widget.PercentRelativeLayout>
