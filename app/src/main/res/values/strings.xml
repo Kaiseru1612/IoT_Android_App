@@ -1,12 +1,3 @@
 <resources>
     <string name="app_name">Receiver</string>
-    <string-array name="Value_name_array">
-        <item>Select data</item>
-        <item>Max Temperature</item>
-        <item>Min Temperature</item>
-        <item>Max TDS</item>
-        <item>Min TDS</item>
-        <item>Max Humid</item>
-        <item>Min Humid</item>
-    </string-array>
 </resources>

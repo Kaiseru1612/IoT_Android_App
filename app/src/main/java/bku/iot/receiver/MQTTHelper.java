@@ -27,10 +27,8 @@ public class MQTTHelper {
 //    final String subscriptionTopic = "VinhTien1612/f/+";
 
 
-//    final String username = "locthanh2001";
-//    final String password = "aio_PGQB79bInpzPc4JOf6vmG8pLRqnV";
     final String username = "VinhTien1612";
-    final String password = "aio_LYpa43WgloRSLKb9v6cmE19NGtzL";
+    final String password = "aio_WcKg52Pn9yej14Li58busgnXlhYW";
 
     public MqttAndroidClient mqttAndroidClient;
 
@@ -103,8 +101,6 @@ public class MQTTHelper {
         try {
 
             String[] topics = new String[]{
-                    /// TODO:
-//                 "locthanh2001/feeds/tds"
                     "VinhTien1612/feeds/pump-channel",
                     "VinhTien1612/feeds/led-channel",
                     "VinhTien1612/feeds/humid-channel",
