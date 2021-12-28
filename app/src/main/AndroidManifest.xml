@@ -28,5 +28,12 @@
             </intent-filter>
         </activity>
         <service android:name="org.eclipse.paho.android.service.MqttService"/>
+
+        <meta-data
+            android:name = "keyValue"
+            android:value = "${IO_KEY}"/>
+        <meta-data
+            android:name = "userName"
+            android:value = "${IO_USERNAME}"/>
     </application>
 </manifest>

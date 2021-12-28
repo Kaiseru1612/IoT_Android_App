@@ -56,7 +56,6 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 //import pl.pawelkleczkowski.customgauge.CustomGauge;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -204,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     editor.apply();
 
-                    // reevaluate data
+                    // re-evaluate data
                     initData();
                 }
                 else {
@@ -228,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // temp init
                 int tmpval = sharedPreferences.getInt("TEMP_VALUE", 0);
-                txtTemp.setText(tmpval + "°C");
+                txtTemp.setText(tmpval + " °C");
                 if (tmpval > MAX_TEMP){
                     txtTemp_status.setBackgroundColor(Color.RED);
                     txtTemp_status.setText("HIGH");
@@ -244,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // TDS init
                 tmpval = sharedPreferences.getInt("TDS_VALUE", 0);
-                txtTDS.setText(tmpval + "ppm");
+                txtTDS.setText(tmpval + " ppm");
                 if (tmpval > MAX_TDS){
                     txtTDS_Status.setBackgroundColor(Color.RED);
                     txtTDS_Status.setText("HIGH");
@@ -259,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // HUMID init
                 tmpval = sharedPreferences.getInt("HUMID_VALUE", 0);
-                txtHumid.setText(tmpval + "%");
+                txtHumid.setText(tmpval + " %");
                 if (tmpval > MAX_HUMID){
                     txtHumid_status.setBackgroundColor(Color.RED);
                     txtHumid_status.setText("HIGH");
